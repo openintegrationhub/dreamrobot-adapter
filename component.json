@@ -1,94 +1,169 @@
 {
-  "title": "Petstore API (Node.js)",
-  "description": "elastic.io component for the Petstore API",
-  "docsUrl": "https://github.com/elasticio/petstore-component-nodejs",
+  "title": "DreamRobot",
+  "description": "DreamRobot REST API",
+  "docsUrl": "https://github.com/elasticio/dreamrobot-component",
   "credentials": {
-    "fields": {
-      "apiKey": {
-        "label": "API key",
-        "required": true,
-        "viewClass": "TextFieldWithNoteView",
-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."
-      }
-    }
+	"fields":{
+	  "username": {
+		"label": "DR REST API Username",
+		"required": true,
+		"viewClass": "TextFieldView",
+		"placeholder": "api_xxxxxxxxxx_12345"
+	  },
+	  "password": {
+		"label": "DR REST API Password",
+		"required": true,
+		"viewClass": "PasswordFieldView",
+		"placeholder": "****************************************"
+	  },
+	  "platform": {
+		"label": "stock identification by",
+		"required": false,
+		"viewClass": "SelectView",
+		"note": "If the connection imports orders, or exports stocks, please define, how the platforms article number should be matched to the DreamRobots stock.",
+		"model": {"":"Lager-Nummer", "SKU_":"Artikelnummer", "EAN_":"Barcode/EAN"}//TODO: OK so?
+	  }
+	}
   },
   "triggers": {
-    "getPetsByStatusWithGenerators": {
-      "main": "./lib/triggers/getPetsByStatusWithGenerators.js",
-      "type": "polling",
-      "title": "Get Pets By Status With Generators",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./lib/schemas/getPetsByStatus.out.json"
-      }
-    },
-    "getPetsByStatusWithPromises": {
-      "main": "./lib/triggers/getPetsByStatusWithPromises.js",
-      "type": "polling",
-      "title": "Get Pets By Status With Promises",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": {
-            "available": "Available",
-            "pending": "Pending",
-            "sold": "Sold"
-          },
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./lib/schemas/getPetsByStatus.out.json"
-      }
-    },
-    "getPetsByStatusWithDynamicSelectModel": {
-      "main": "./lib/triggers/getPetsByStatusWithDynamicSelectModel.js",
-      "type": "polling",
-      "title": "Get Pets By Status With Dynamic Select Model",
-      "fields": {
-        "status": {
-          "label": "Pet Status",
-          "required": true,
-          "viewClass": "SelectView",
-          "model": "getStatusModel",
-          "prompt": "Select Pet Status"
-        }
-      },
-      "metadata": {
-        "out": "./lib/schemas/getPetsByStatus.out.json"
-      }
-    }
+	"getObjectsPolling": {
+	  "main": "./lib/triggers/getObjectsPolling.js",
+	  "type": "polling",
+	  "title": "Fetch new and updated objects (getObjects - Polling)",
+	  "description": "Get DreamRobot objects which have recently been modified or created",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to fetch",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": {"stock":"Stock", "order":"Order"},
+		  "prompt": "Select a DreamRobot module"
+		},
+		"maxNum": {
+		  "label": "Number of records to fetch",
+		  "viewClass": "TextFieldView",
+		  "prompt": "20",
+		  "note": "Defaults to 20"
+		}
+	  },
+	  "metadata": {
+		"out": {}
+	  }
+	},
+	"getObjectsWebhook": {
+	  "main": "./lib/triggers/getObjectsWebhook.js",
+	  "type": "webhook",
+	  "title": "Fetch new and updated objects (getObjects - Webhook)",
+	  "description": "Get SugarCRM objects which have recently been modified or created",
+	  "dynamicMetadata": true,
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to fetch",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"out": {}
+	  }
+	},
+	"getDeletedObjectsWebhook": {
+	  "main": "./lib/triggers/getDeletedObjectsWebhook.js",
+	  "type": "webhook",
+	  "title": "Fetch deleted objects (getDeletedObjects - Webhook)",
+	  "description": "Get SugarCRM objects which have recently been deleted",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to fetch",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"out": {
+		  "type": "object",
+		  "property": {
+			"id" : {
+			  "type": "string",
+			  "required": true,
+			  "title": "ID of deleted item"
+			}
+		  }
+		}
+	  }
+	}
   },
   "actions": {
-    "createPetWithPromise": {
-      "main": "./lib/actions/createPetWithPromise.js",
-      "title": "Create a Pet With Promise",
-      "metadata": {
-        "in": "./lib/schemas/createPet.in.json",
-        "out": "./lib/schemas/createPet.out.json"
-      }
-    },
-    "createPetWithGenerators": {
-      "main": "./lib/actions/createPetWithGenerators.js",
-      "title": "Create a Pet With Generators",
-      "metadata": {
-        "in": "./lib/schemas/createPet.in.json",
-        "out": "./lib/schemas/createPet.out.json"
-      }
-    }
+	"lookupObject" : {
+	  "title": "Lookup Object",
+	  "main": "./lib/actions/lookupObject.js",
+	  "description": "Given an id, fetches the corresponding object.",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to lookup",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"in": {
+		  "type": "object",
+		  "properties": {
+			"id": {
+			  "title": "id",
+			  "type": "string",
+			  "required": true
+			}
+		  }
+		}
+	  }
+	},
+	"deleteObject" : {
+	  "title": "Delete Object",
+	  "main": "./lib/actions/deleteObject.js",
+	  "description": "Given an id, deletes the corresponding object.",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to delete",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"in": {
+		  "type": "object",
+		  "properties": {
+			"id": {
+			  "title": "id",
+			  "type": "string",
+			  "required": true
+			}
+		  }
+		}
+	  }
+	},
+	"upsertObject" :{
+	  "main": "./lib/actions/upsertObject.js",
+	  "title": "Upsert Entry",
+	  "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
+	  "dynamicMetadata": true,
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to update",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  }
+	}
   }
 }
