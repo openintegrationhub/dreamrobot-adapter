@@ -13,6 +13,8 @@ module.exports = verify;
  */
 function verify(credentials) {
 
+	return 'abc';
+
     // access the value of the apiKey field defined in credentials section of component.json
     const apiKey = credentials.apiKey;
 
@@ -28,8 +30,6 @@ function verify(credentials) {
         },
         json: true
     };
-
-    return TRUE;
 
     // if the request succeeds, we can assume the api key is valid
     return request.get(requestOptions);
