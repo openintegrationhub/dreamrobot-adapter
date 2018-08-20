@@ -22,12 +22,14 @@ function verify(credentials) {
 
     // sending a request to the most simple endpoint of the target API
     const requestOptions = {
-        uri: 'https://petstore.elastic.io/v2/user/me',
+        uri: 'https://api.dreamrobot.de/rest/v1.1/token.php',
         headers: {
             'api-key': apiKey
         },
         json: true
     };
+
+    return TRUE;
 
     // if the request succeeds, we can assume the api key is valid
     return request.get(requestOptions);
