@@ -13,6 +13,9 @@ module.exports = verify;
  */
 function verify(credentials) {
 
+	console.log(JSON.stringify(credentials));
+	// console.dir(credentials);
+
 	return 'abc';
 
     // access the value of the apiKey field defined in credentials section of component.json
