@@ -14,12 +14,12 @@ module.exports = verify;
  */
 function verify(credentials) {
 
-	// console.log(JSON.stringify(credentials));
+	console.log(JSON.stringify(credentials));
 	// console.dir(credentials);
 
-    if (!credentials.username || !credentials.password) {
-        throw new Error('API key is missing');
-    }
+    // if (!credentials.username || !credentials.password) {
+    //     throw new Error('API key is missing');
+    // }
 
 	let dr_ret = DreamRobot.makeRequest('system/scope', 'GET');
     console.log(JSON.stringify(dr_ret));
