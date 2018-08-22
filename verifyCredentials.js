@@ -1,5 +1,6 @@
 "use strict";
 const request = require('request-promise');
+const DreamRobot = require('./lib/dreamrobot');
 
 module.exports = verify;
 
@@ -13,27 +14,18 @@ module.exports = verify;
  */
 function verify(credentials) {
 
-	console.log(JSON.stringify(credentials));
+	// console.log(JSON.stringify(credentials));
 	// console.dir(credentials);
+	//
+	// return TRUE;
 
-	return TRUE;
-
-    // access the value of the apiKey field defined in credentials section of component.json
-    const apiKey = credentials.apiKey;
-
-    if (!apiKey) {
+    if (!credentials.username || !credentials.password) {
         throw new Error('API key is missing');
     }
 
-    // sending a request to the most simple endpoint of the target API
-    const requestOptions = {
-        uri: 'https://api.dreamrobot.de/rest/v1.1/token.php',
-        headers: {
-            'api-key': apiKey
-        },
-        json: true
-    };
+	let dr_ret = DreamRobot.makeRequest('system/scope', 'GET');
+    console.log(JSON.stringify(dr_ret));
 
     // if the request succeeds, we can assume the api key is valid
-    return request.get(requestOptions);
+    return dr_ret;
 }
