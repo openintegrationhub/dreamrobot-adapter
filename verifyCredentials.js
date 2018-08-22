@@ -16,8 +16,6 @@ function verify(credentials) {
 
 	// console.log(JSON.stringify(credentials));
 	// console.dir(credentials);
-	//
-	// return TRUE;
 
     if (!credentials.username || !credentials.password) {
         throw new Error('API key is missing');
@@ -25,6 +23,7 @@ function verify(credentials) {
 
 	let dr_ret = DreamRobot.makeRequest('system/scope', 'GET');
     console.log(JSON.stringify(dr_ret));
+	return TRUE;
     throw new Error(JSON.stringify(dr_ret));
 
     // if the request succeeds, we can assume the api key is valid
