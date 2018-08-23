@@ -1,5 +1,6 @@
 "use strict";
 const request = require('request-promise');
+const DreamRobot = require('./lib/dreamrobot');
 
 module.exports = verify;
 
