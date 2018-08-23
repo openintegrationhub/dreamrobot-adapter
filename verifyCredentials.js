@@ -15,20 +15,23 @@ module.exports = verify;
  */
 function verify(credentials) {
 
-	console.log(JSON.stringify(credentials));
+	console.log(credentials);
 	// console.dir(credentials);
 
 	// if (!credentials.username || !credentials.password) {
 	//     throw new Error('API key is missing');
 	// }
-
-	const dr_ret = DreamRobot(credentials, this).makeRequest('system/scope', 'GET');
+	let dr_ret;
+	try {
+		dr_ret = DreamRobot(credentials, undefined).makeRequest('system/scope', 'GET');
+	}
+	catch (e) {
+		console.log(JSON.stringify(e));
+	}
 	console.log(JSON.stringify(dr_ret));
 
 	return TRUE;
 
-	throw new Error(JSON.stringify(dr_ret));
-
 	// if the request succeeds, we can assume the api key is valid
-	return dr_ret;
+	// return dr_ret;
 }
