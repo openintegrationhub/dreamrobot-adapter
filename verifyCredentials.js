@@ -21,7 +21,7 @@ function verify(credentials) {
 	//     throw new Error('API key is missing');
 	// }
 
-	const dr_ret = DreamRobot.makeRequest('system/scope', 'GET').then(data => console.log(JSON.stringify(data)));
+	const dr_ret = DreamRobot.makeRequest('system/scope', 'GET').then(data => console.log(JSON.stringify(data))).catch(data => console.log(JSON.stringify(data)));
 	console.log(JSON.stringify(dr_ret));
 
 	return TRUE;
