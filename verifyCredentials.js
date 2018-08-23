@@ -16,6 +16,8 @@ function verify(credentials) {
 	console.log(JSON.stringify(credentials));
 	// console.dir(credentials);
 
+	console.log('Dies ist eine AUsgabe aus meiner Funktion.');
+
 	return TRUE;
 
 	// access the value of the apiKey field defined in credentials section of component.json
