@@ -24,5 +24,146 @@
 		"model": {"":"Lager-Nummer", "SKU_":"Artikelnummer", "EAN_":"Barcode/EAN"}//TODO: OK so?
 	  }
 	}
+  },
+  "triggers": {
+	"getObjectsPolling": {
+	  "main": "./lib/triggers/getObjectsPolling.js",
+	  "type": "polling",
+	  "title": "Fetch new and updated objects (getObjects - Polling)",
+	  "description": "Get DreamRobot objects which have recently been modified or created",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to fetch",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": {"stock":"Stock", "order":"Order"},
+		  "prompt": "Select a DreamRobot module"
+		},
+		"maxNum": {
+		  "label": "Number of records to fetch",
+		  "viewClass": "TextFieldView",
+		  "prompt": "20",
+		  "note": "Defaults to 20"
+		}
+	  },
+	  "metadata": {
+		"out": {}
+	  }
+	},
+	"getObjectsWebhook": {
+	  "main": "./lib/triggers/getObjectsWebhook.js",
+	  "type": "webhook",
+	  "title": "Fetch new and updated objects (getObjects - Webhook)",
+	  "description": "Get SugarCRM objects which have recently been modified or created",
+	  "dynamicMetadata": true,
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to fetch",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"out": {}
+	  }
+	},
+	"getDeletedObjectsWebhook": {
+	  "main": "./lib/triggers/getDeletedObjectsWebhook.js",
+	  "type": "webhook",
+	  "title": "Fetch deleted objects (getDeletedObjects - Webhook)",
+	  "description": "Get SugarCRM objects which have recently been deleted",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to fetch",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"out": {
+		  "type": "object",
+		  "property": {
+			"id" : {
+			  "type": "string",
+			  "required": true,
+			  "title": "ID of deleted item"
+			}
+		  }
+		}
+	  }
+	}
+  },
+  "actions": {
+	"lookupObject" : {
+	  "title": "Lookup Object",
+	  "main": "./lib/actions/lookupObject.js",
+	  "description": "Given an id, fetches the corresponding object.",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to lookup",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"in": {
+		  "type": "object",
+		  "properties": {
+			"id": {
+			  "title": "id",
+			  "type": "string",
+			  "required": true
+			}
+		  }
+		}
+	  }
+	},
+	"deleteObject" : {
+	  "title": "Delete Object",
+	  "main": "./lib/actions/deleteObject.js",
+	  "description": "Given an id, deletes the corresponding object.",
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to delete",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  },
+	  "metadata": {
+		"in": {
+		  "type": "object",
+		  "properties": {
+			"id": {
+			  "title": "id",
+			  "type": "string",
+			  "required": true
+			}
+		  }
+		}
+	  }
+	},
+	"upsertObject" :{
+	  "main": "./lib/actions/upsertObject.js",
+	  "title": "Upsert Entry",
+	  "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
+	  "dynamicMetadata": true,
+	  "fields" : {
+		"module" : {
+		  "label": "SugarCRM module to update",
+		  "required": true,
+		  "viewClass": "SelectView",
+		  "model": "modules",
+		  "prompt": "Select a SugarCRM module"
+		}
+	  }
+	}
   }
 }
