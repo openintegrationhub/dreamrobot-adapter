@@ -13,7 +13,7 @@ module.exports = verify;
  *
  * @returns Promise sending HTTP request and resolving its response
  */
-async function verify(credentials) {
+function verify(credentials) {
 
 	console.log(JSON.stringify(credentials));
 	// console.dir(credentials);
@@ -22,7 +22,7 @@ async function verify(credentials) {
 	//     throw new Error('API key is missing');
 	// }
 
-	const dr_ret = await DreamRobot.makeRequest('system/scope', 'GET');
+	const dr_ret = DreamRobot.makeRequest('system/scope', 'GET');
 	console.log(JSON.stringify(dr_ret));
 
 	return TRUE;
