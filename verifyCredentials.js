@@ -23,7 +23,7 @@ function verify(credentials) {
 
 	let dr_ret = DreamRobot.makeRequest('system/scope', 'GET');
     console.log(JSON.stringify(dr_ret));
-	return true;
+	return false;
     throw new Error(JSON.stringify(dr_ret));
 
     // if the request succeeds, we can assume the api key is valid
