@@ -26,9 +26,9 @@ function verify(credentials) {
 		dr_ret = DreamRobot(credentials, undefined).makeRequest('system/scope', 'GET');
 	}
 	catch (e) {
-		console.log(JSON.stringify(e));
+		console.log("Error: " + JSON.stringify(e));
 	}
-	console.log(JSON.stringify(dr_ret));
+	console.log("dr_ret: " + JSON.stringify(dr_ret));
 
 	return TRUE;
 
