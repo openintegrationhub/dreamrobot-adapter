@@ -16,6 +16,7 @@ module.exports = verify;
 function verify(credentials) {
 
 	console.log(credentials);
+	const dr = new DreamRobot(credentials, undefined);
 	// console.dir(credentials);
 
 	// if (!credentials.username || !credentials.password) {
@@ -23,7 +24,7 @@ function verify(credentials) {
 	// }
 	let dr_ret;
 	try {
-		dr_ret = DreamRobot(credentials, undefined).makeRequest('system/scope', 'GET');
+		dr_ret = dr.makeRequest('system/scope', 'GET');
 	}
 	catch (e) {
 		console.log("Error: " + JSON.stringify(e) + " " + e.name + " " + e.message);
