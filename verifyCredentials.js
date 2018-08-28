@@ -1,6 +1,6 @@
 "use strict";
 // const request = require('request-promise');
-const request = require('request');
+const request = require('request-promise');
 const DreamRobot = require('./lib/dreamrobot');
 
 module.exports = verify;
@@ -23,8 +23,10 @@ function verify(credentials) {
 		//     throw new Error('API key is missing');
 		// }
 		let dr_ret;
-		dr_ret = dr.makeRequest('system/scope', 'GET');
-		console.log("dr_ret: " + JSON.stringify(dr_ret));
+		dr_ret = dr.makeRequest('system/scope', 'GET').then(function(dr_ret) {
+			console.log("dr_ret: " + JSON.stringify(dr_ret));
+			return dr_ret;
+		});
 		return true;//OK
 	}
 	catch (e) {
