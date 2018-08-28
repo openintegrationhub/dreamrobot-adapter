@@ -14,24 +14,23 @@ module.exports = verify;
  * @returns Promise sending HTTP request and resolving its response
  */
 function verify(credentials) {
-
-	console.log(credentials);
-	const dr = new DreamRobot(credentials, undefined);
-	// console.dir(credentials);
-
-	// if (!credentials.username || !credentials.password) {
-	//     throw new Error('API key is missing');
-	// }
-	let dr_ret;
 	try {
+		console.log(credentials);
+		const dr = new DreamRobot(credentials, undefined);
+		// console.dir(credentials);
+
+		// if (!credentials.username || !credentials.password) {
+		//     throw new Error('API key is missing');
+		// }
+		let dr_ret;
 		dr_ret = dr.makeRequest('system/scope', 'GET');
+		console.log("dr_ret: " + JSON.stringify(dr_ret));
+		return true;//OK
 	}
 	catch (e) {
-		console.log("Error: " + JSON.stringify(e) + " " + e.name + " " + e.message);
+		console.log("Error: " + JSON.stringify(e, Object.getOwnPropertyNames(e)));
+		return TRUE;//Fehler
 	}
-	console.log("dr_ret: " + JSON.stringify(dr_ret));
-
-	return TRUE;
 
 	// if the request succeeds, we can assume the api key is valid
 	// return dr_ret;
