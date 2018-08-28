@@ -22,12 +22,11 @@ function verify(credentials) {
 		// if (!credentials.username || !credentials.password) {
 		//     throw new Error('API key is missing');
 		// }
-		let dr_ret;
-		dr_ret = dr.makeRequest('system/scope', 'GET').then(function(dr_ret) {
+		return dr.makeRequest('system/scope', 'GET')/*.then(function(dr_ret) {
 			console.log("dr_ret: " + JSON.stringify(dr_ret));
 			return dr_ret;
-		});
-		return true;//OK
+		});*/
+		// return true;//OK
 	}
 	catch (e) {
 		console.log("Error: " + JSON.stringify(e, Object.getOwnPropertyNames(e)));
