@@ -1,12 +1,12 @@
 {
-	"type": "object",
-	"properties": {
+  "type": "object",
+  "properties": {
 	"order_id": {
-		"title": "order_id",
-			"required": "true",
-			"type": "string",
-			"note": "The order_id is defined as follows: ordernumber, underscore, year, underscore, month",
-			"placeholder": "12345_2018_08"
+	  "title": "order_id",
+	  "type": "string",
+	  "required": true,
+	  "note": "The order_id is defined as follows: ordernumber, underscore, year, underscore, month",
+	  "placeholder": "12345_2018_08"
 	}
-}
+  }
 }

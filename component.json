@@ -21,7 +21,7 @@
 		"required": false,
 		"viewClass": "SelectView",
 		"note": "If the connection imports orders, or exports stocks, please define, how the platforms article number should be matched to the DreamRobots stock.",
-		"model": {"":"Lager-Nummer", "SKU_":"Artikelnummer", "EAN_":"Barcode/EAN"}//TODO: OK so?
+		"model": {"lager_nr":"Lager-Nummer", "artikelnummer":"Artikelnummer", "barcode":"Barcode/EAN"}
 	  }
 	}
   },

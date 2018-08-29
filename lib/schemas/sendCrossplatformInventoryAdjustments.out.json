@@ -1,12 +1,19 @@
 {
   "type": "object",
   "properties": {
-	"order_id": {
-	  "title": "order_id",
-	  "type": "string",
-	  "required": "true",
-	  "note": "The order_id is defined as follows: ordernumber, underscore, year, underscore, month",
-	  "placeholder": "12345_2018_08"
+	"stock_id": {
+	  "title": "stock_id",
+	  "type": "integer",
+	  "required": true,
+	  "note": "The stock_id is also known as 'Lagernummer'",
+	  "placeholder": 1234
+	},
+	"quantity": {
+	  "title": "quantity",
+	  "type": "float",
+	  "required": true,
+	  "note": "new quantity",
+	  "placeholder": 1
 	}
   }
 }
