@@ -1,0 +1,262 @@
+[1mdiff --git a/component.json b/component.json[m
+[1mindex 3b393af..74e0fcb 100644[m
+[1m--- a/component.json[m
+[1m+++ b/component.json[m
+[36m@@ -1,94 +1,169 @@[m
+ {[m
+[31m-  "title": "Petstore API (Node.js)",[m
+[31m-  "description": "elastic.io component for the Petstore API",[m
+[31m-  "docsUrl": "https://github.com/elasticio/petstore-component-nodejs",[m
+[32m+[m[32m  "title": "DreamRobot",[m
+[32m+[m[32m  "description": "DreamRobot REST API",[m
+[32m+[m[32m  "docsUrl": "https://github.com/elasticio/dreamrobot-component",[m
+   "credentials": {[m
+[31m-    "fields": {[m
+[31m-      "apiKey": {[m
+[31m-        "label": "API key",[m
+[31m-        "required": true,[m
+[31m-        "viewClass": "TextFieldWithNoteView",[m
+[31m-        "note": "Please use <b>elasticio</b> as API key. For more details see <a href='https://petstore.elastic.io/docs/' target='_blank'>Petstore API docs</a>."[m
+[31m-      }[m
+[31m-    }[m
+[32m+[m	[32m"fields":{[m
+[32m+[m	[32m  "username": {[m
+[32m+[m		[32m"label": "DR REST API Username",[m
+[32m+[m		[32m"required": true,[m
+[32m+[m		[32m"viewClass": "TextFieldView",[m
+[32m+[m		[32m"placeholder": "api_xxxxxxxxxx_12345"[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "password": {[m
+[32m+[m		[32m"label": "DR REST API Password",[m
+[32m+[m		[32m"required": true,[m
+[32m+[m		[32m"viewClass": "PasswordFieldView",[m
+[32m+[m		[32m"placeholder": "****************************************"[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "platform": {[m
+[32m+[m		[32m"label": "stock identification by",[m
+[32m+[m		[32m"required": false,[m
+[32m+[m		[32m"viewClass": "SelectView",[m
+[32m+[m		[32m"note": "If the connection imports orders, or exports stocks, please define, how the platforms article number should be matched to the DreamRobots stock.",[m
+[32m+[m		[32m"model": {"":"Lager-Nummer", "SKU_":"Artikelnummer", "EAN_":"Barcode/EAN"}//TODO: OK so?[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m}[m
+   },[m
+   "triggers": {[m
+[31m-    "getPetsByStatusWithGenerators": {[m
+[31m-      "main": "./lib/triggers/getPetsByStatusWithGenerators.js",[m
+[31m-      "type": "polling",[m
+[31m-      "title": "Get Pets By Status With Generators",[m
+[31m-      "fields": {[m
+[31m-        "status": {[m
+[31m-          "label": "Pet Status",[m
+[31m-          "required": true,[m
+[31m-          "viewClass": "SelectView",[m
+[31m-          "model": {[m
+[31m-            "available": "Available",[m
+[31m-            "pending": "Pending",[m
+[31m-            "sold": "Sold"[m
+[31m-          },[m
+[31m-          "prompt": "Select Pet Status"[m
+[31m-        }[m
+[31m-      },[m
+[31m-      "metadata": {[m
+[31m-        "out": "./lib/schemas/getPetsByStatus.out.json"[m
+[31m-      }[m
+[31m-    },[m
+[31m-    "getPetsByStatusWithPromises": {[m
+[31m-      "main": "./lib/triggers/getPetsByStatusWithPromises.js",[m
+[31m-      "type": "polling",[m
+[31m-      "title": "Get Pets By Status With Promises",[m
+[31m-      "fields": {[m
+[31m-        "status": {[m
+[31m-          "label": "Pet Status",[m
+[31m-          "required": true,[m
+[31m-          "viewClass": "SelectView",[m
+[31m-          "model": {[m
+[31m-            "available": "Available",[m
+[31m-            "pending": "Pending",[m
+[31m-            "sold": "Sold"[m
+[31m-          },[m
+[31m-          "prompt": "Select Pet Status"[m
+[31m-        }[m
+[31m-      },[m
+[31m-      "metadata": {[m
+[31m-        "out": "./lib/schemas/getPetsByStatus.out.json"[m
+[31m-      }[m
+[31m-    },[m
+[31m-    "getPetsByStatusWithDynamicSelectModel": {[m
+[31m-      "main": "./lib/triggers/getPetsByStatusWithDynamicSelectModel.js",[m
+[31m-      "type": "polling",[m
+[31m-      "title": "Get Pets By Status With Dynamic Select Model",[m
+[31m-      "fields": {[m
+[31m-        "status": {[m
+[31m-          "label": "Pet Status",[m
+[31m-          "required": true,[m
+[31m-          "viewClass": "SelectView",[m
+[31m-          "model": "getStatusModel",[m
+[31m-          "prompt": "Select Pet Status"[m
+[31m-        }[m
+[31m-      },[m
+[31m-      "metadata": {[m
+[31m-        "out": "./lib/schemas/getPetsByStatus.out.json"[m
+[31m-      }[m
+[31m-    }[m
+[32m+[m	[32m"getObjectsPolling": {[m
+[32m+[m	[32m  "main": "./lib/triggers/getObjectsPolling.js",[m
+[32m+[m	[32m  "type": "polling",[m
+[32m+[m	[32m  "title": "Fetch new and updated objects (getObjects - Polling)",[m
+[32m+[m	[32m  "description": "Get DreamRobot objects which have recently been modified or created",[m
+[32m+[m	[32m  "fields" : {[m
+[32m+[m		[32m"module" : {[m
+[32m+[m		[32m  "label": "SugarCRM module to fetch",[m
+[32m+[m		[32m  "required": true,[m
+[32m+[m		[32m  "viewClass": "SelectView",[m
+[32m+[m		[32m  "model": {"stock":"Stock", "order":"Order"},[m
+[32m+[m		[32m  "prompt": "Select a DreamRobot module"[m
+[32m+[m		[32m},[m
+[32m+[m		[32m"maxNum": {[m
+[32m+[m		[32m  "label": "Number of records to fetch",[m
+[32m+[m		[32m  "viewClass": "TextFieldView",[m
+[32m+[m		[32m  "prompt": "20",[m
+[32m+[m		[32m  "note": "Defaults to 20"[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "metadata": {[m
+[32m+[m		[32m"out": {}[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m},[m
+[32m+[m	[32m"getObjectsWebhook": {[m
+[32m+[m	[32m  "main": "./lib/triggers/getObjectsWebhook.js",[m
+[32m+[m	[32m  "type": "webhook",[m
+[32m+[m	[32m  "title": "Fetch new and updated objects (getObjects - Webhook)",[m
+[32m+[m	[32m  "description": "Get SugarCRM objects which have recently been modified or created",[m
+[32m+[m	[32m  "dynamicMetadata": true,[m
+[32m+[m	[32m  "fields" : {[m
+[32m+[m		[32m"module" : {[m
+[32m+[m		[32m  "label": "SugarCRM module to fetch",[m
+[32m+[m		[32m  "required": true,[m
+[32m+[m		[32m  "viewClass": "SelectView",[m
+[32m+[m		[32m  "model": "modules",[m
+[32m+[m		[32m  "prompt": "Select a SugarCRM module"[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "metadata": {[m
+[32m+[m		[32m"out": {}[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m},[m
+[32m+[m	[32m"getDeletedObjectsWebhook": {[m
+[32m+[m	[32m  "main": "./lib/triggers/getDeletedObjectsWebhook.js",[m
+[32m+[m	[32m  "type": "webhook",[m
+[32m+[m	[32m  "title": "Fetch deleted objects (getDeletedObjects - Webhook)",[m
+[32m+[m	[32m  "description": "Get SugarCRM objects which have recently been deleted",[m
+[32m+[m	[32m  "fields" : {[m
+[32m+[m		[32m"module" : {[m
+[32m+[m		[32m  "label": "SugarCRM module to fetch",[m
+[32m+[m		[32m  "required": true,[m
+[32m+[m		[32m  "viewClass": "SelectView",[m
+[32m+[m		[32m  "model": "modules",[m
+[32m+[m		[32m  "prompt": "Select a SugarCRM module"[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "metadata": {[m
+[32m+[m		[32m"out": {[m
+[32m+[m		[32m  "type": "object",[m
+[32m+[m		[32m  "property": {[m
+[32m+[m			[32m"id" : {[m
+[32m+[m			[32m  "type": "string",[m
+[32m+[m			[32m  "required": true,[m
+[32m+[m			[32m  "title": "ID of deleted item"[m
+[32m+[m			[32m}[m
+[32m+[m		[32m  }[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m}[m
+   },[m
+   "actions": {[m
+[31m-    "createPetWithPromise": {[m
+[31m-      "main": "./lib/actions/createPetWithPromise.js",[m
+[31m-      "title": "Create a Pet With Promise",[m
+[31m-      "metadata": {[m
+[31m-        "in": "./lib/schemas/createPet.in.json",[m
+[31m-        "out": "./lib/schemas/createPet.out.json"[m
+[31m-      }[m
+[31m-    },[m
+[31m-    "createPetWithGenerators": {[m
+[31m-      "main": "./lib/actions/createPetWithGenerators.js",[m
+[31m-      "title": "Create a Pet With Generators",[m
+[31m-      "metadata": {[m
+[31m-        "in": "./lib/schemas/createPet.in.json",[m
+[31m-        "out": "./lib/schemas/createPet.out.json"[m
+[31m-      }[m
+[31m-    }[m
+[32m+[m	[32m"lookupObject" : {[m
+[32m+[m	[32m  "title": "Lookup Object",[m
+[32m+[m	[32m  "main": "./lib/actions/lookupObject.js",[m
+[32m+[m	[32m  "description": "Given an id, fetches the corresponding object.",[m
+[32m+[m	[32m  "fields" : {[m
+[32m+[m		[32m"module" : {[m
+[32m+[m		[32m  "label": "SugarCRM module to lookup",[m
+[32m+[m		[32m  "required": true,[m
+[32m+[m		[32m  "viewClass": "SelectView",[m
+[32m+[m		[32m  "model": "modules",[m
+[32m+[m		[32m  "prompt": "Select a SugarCRM module"[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "metadata": {[m
+[32m+[m		[32m"in": {[m
+[32m+[m		[32m  "type": "object",[m
+[32m+[m		[32m  "properties": {[m
+[32m+[m			[32m"id": {[m
+[32m+[m			[32m  "title": "id",[m
+[32m+[m			[32m  "type": "string",[m
+[32m+[m			[32m  "required": true[m
+[32m+[m			[32m}[m
+[32m+[m		[32m  }[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m},[m
+[32m+[m	[32m"deleteObject" : {[m
+[32m+[m	[32m  "title": "Delete Object",[m
+[32m+[m	[32m  "main": "./lib/actions/deleteObject.js",[m
+[32m+[m	[32m  "description": "Given an id, deletes the corresponding object.",[m
+[32m+[m	[32m  "fields" : {[m
+[32m+[m		[32m"module" : {[m
+[32m+[m		[32m  "label": "SugarCRM module to delete",[m
+[32m+[m		[32m  "required": true,[m
+[32m+[m		[32m  "viewClass": "SelectView",[m
+[32m+[m		[32m  "model": "modules",[m
+[32m+[m		[32m  "prompt": "Select a SugarCRM module"[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  },[m
+[32m+[m	[32m  "metadata": {[m
+[32m+[m		[32m"in": {[m
+[32m+[m		[32m  "type": "object",[m
+[32m+[m		[32m  "properties": {[m
+[32m+[m			[32m"id": {[m
+[32m+[m			[32m  "title": "id",[m
+[32m+[m			[32m  "type": "string",[m
+[32m+[m			[32m  "required": true[m
+[32m+[m			[32m}[m
+[32m+[m		[32m  }[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m},[m
+[32m+[m	[32m"upsertObject" :{[m
+[32m+[m	[32m  "main": "./lib/actions/upsertObject.js",[m
+[32m+[m	[32m  "title": "Upsert Entry",[m
+[32m+[m	[32m  "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",[m
+[32m+[m	[32m  "dynamicMetadata": true,[m
+[32m+[m	[32m  "fields" : {[m
+[32m+[m		[32m"module" : {[m
+[32m+[m		[32m  "label": "SugarCRM module to update",[m
+[32m+[m		[32m  "required": true,[m
+[32m+[m		[32m  "viewClass": "SelectView",[m
+[32m+[m		[32m  "model": "modules",[m
+[32m+[m		[32m  "prompt": "Select a SugarCRM module"[m
+[32m+[m		[32m}[m
+[32m+[m	[32m  }[m
+[32m+[m	[32m}[m
+   }[m
+[31m-}[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
