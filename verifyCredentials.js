@@ -18,7 +18,7 @@ function verify(credentials) {
 	try {
 		console.log(credentials);
 		console.log(process.version);
-		const dr = new DreamRobot(credentials, undefined);
+		const dr = new DreamRobot(credentials, this);
 		// console.dir(credentials);
 
 		// if (!credentials.username || !credentials.password) {
