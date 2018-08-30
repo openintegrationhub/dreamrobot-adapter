@@ -2,6 +2,7 @@
 // const request = require('request-promise');
 const request = require('request-promise');
 const DreamRobot = require('./lib/dreamrobot');
+const process = require('process');
 
 module.exports = verify;
 
@@ -16,6 +17,7 @@ module.exports = verify;
 function verify(credentials) {
 	try {
 		console.log(credentials);
+		console.log(process.version);
 		const dr = new DreamRobot(credentials, undefined);
 		// console.dir(credentials);
 
