@@ -23,7 +23,20 @@ function verify(credentials) {
 		//     throw new Error('API key is missing');
 		// }
 
-		return dr.makeRequest('system/scope', 'GET');/*.then(function(dr_ret) {
+		promise = dr.makeRequest('system/scope', 'GET');
+
+		promise.catch((e) => {
+			console.log("Catch-Error: " + JSON.stringify(e, Object.getOwnPropertyNames(e)));
+			return TRUE;//Fehler
+		}).then((e) => {
+			console.log("Then-Msg: " + JSON.stringify(e, Object.getOwnPropertyNames(e)));
+			return TRUE;//Fehler
+		})
+
+		return promise;
+
+		/*.then(function(dr_ret) {
+
 			console.log("dr_ret: " + JSON.stringify(dr_ret));
 			return dr_ret;
 		});*/
