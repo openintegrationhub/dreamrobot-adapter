@@ -68,16 +68,16 @@
 	  "main": "./lib/actions/CreateOrder.js",
 	  "description": "Creates the given Order.",
 	  "metadata": {
-		"in": {
-		  "type": "object",
-		  "properties": {
-			"id": {
-			  "title": "order",
-			  "type": "object",
-			  "required": true
-			}
-		  }
-		}
+//		"in": {
+//		  "type": "object",
+//		  "properties": {
+//			"id": {
+//			  "title": "order",
+//			  "type": "object",
+//			  "required": true
+//			}
+//		  }
+//		}
 	  }
 	}
   }
