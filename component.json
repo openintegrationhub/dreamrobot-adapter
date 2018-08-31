@@ -31,14 +31,6 @@
 	  "description": "tell your shop or marketplace, the order has been shipped",
 	  "type": "webhook",
 	  "main": "./lib/triggers/sendParcelSentState.js",
-	  //	  "fields" : {
-	  //		"module" : {
-	  //		  "label": "platform (DR internal type)",
-	  //		  "required": true,
-	  //		  "viewClass": "TextFieldView",
-	  //		  "placeholder": "e.g. 'eBay' or 'Tradoria'"
-	  //		}
-	  //	  },
 	  "metadata": {
 		"out": "./lib/schemas/sendParcelSentState.out.json"
 	  }
@@ -68,16 +60,17 @@
 	  "main": "./lib/actions/CreateOrder.js",
 	  "description": "Creates the given Order.",
 	  "metadata": {
-//		"in": {
-//		  "type": "object",
-//		  "properties": {
-//			"id": {
-//			  "title": "order",
-//			  "type": "object",
-//			  "required": true
-//			}
-//		  }
-//		}
+		"in": {
+		  "type": "object",
+		  "properties": {
+			"id": {
+			  "title": "order",
+			  "type": "object",
+			  "required": true
+			}
+		  }
+		},
+		"out":{}
 	  }
 	}
   }
