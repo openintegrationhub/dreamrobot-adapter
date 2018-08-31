@@ -26,142 +26,57 @@
 	}
   },
   "triggers": {
-	"getObjectsPolling": {
-	  "main": "./lib/triggers/getObjectsPolling.js",
-	  "type": "polling",
-	  "title": "Fetch new and updated objects (getObjects - Polling)",
-	  "description": "Get DreamRobot objects which have recently been modified or created",
-	  "fields" : {
-		"module" : {
-		  "label": "SugarCRM module to fetch",
-		  "required": true,
-		  "viewClass": "SelectView",
-		  "model": {"stock":"Stock", "order":"Order"},
-		  "prompt": "Select a DreamRobot module"
-		},
-		"maxNum": {
-		  "label": "Number of records to fetch",
-		  "viewClass": "TextFieldView",
-		  "prompt": "20",
-		  "note": "Defaults to 20"
-		}
-	  },
+	"sendParcelSentState": {
+	  "title": "Transfer 'parcel sent' state",
+	  "description": "tell your shop or marketplace, the order has been shipped",
+	  "type": "webhook",
+	  "main": "./lib/triggers/sendParcelSentState.js",
+	  //	  "fields" : {
+	  //		"module" : {
+	  //		  "label": "platform (DR internal type)",
+	  //		  "required": true,
+	  //		  "viewClass": "TextFieldView",
+	  //		  "placeholder": "e.g. 'eBay' or 'Tradoria'"
+	  //		}
+	  //	  },
 	  "metadata": {
-		"out": {}
+		"out": "./lib/schemas/sendParcelSentState.out.json"
 	  }
 	},
-	"getObjectsWebhook": {
-	  "main": "./lib/triggers/getObjectsWebhook.js",
+	"sendCrossplatformInventoryAdjustments": {
+	  "title": "Update external stock quantities (PüMa/cia)",
+	  "description": "When PüMa/cia(Cross-platform-Inventory-Adjustments) is triggered, send new stocklevel. You have to activate this webhook for each individual stock in the CIA Section in your DR stock settings.",
 	  "type": "webhook",
-	  "title": "Fetch new and updated objects (getObjects - Webhook)",
-	  "description": "Get SugarCRM objects which have recently been modified or created",
-	  "dynamicMetadata": true,
-	  "fields" : {
-		"module" : {
-		  "label": "SugarCRM module to fetch",
-		  "required": true,
-		  "viewClass": "SelectView",
-		  "model": "modules",
-		  "prompt": "Select a SugarCRM module"
-		}
-	  },
+	  "main": "./lib/triggers/sendCrossplatformInventoryAdjustments.js",
 	  "metadata": {
-		"out": {}
+		"out": "./lib/schemas/sendCrossplatformInventoryAdjustments.out.json"
 	  }
 	},
-	"getDeletedObjectsWebhook": {
-	  "main": "./lib/triggers/getDeletedObjectsWebhook.js",
+	"sendProduct": {
+	  "title": "Create or Update a Product (external)",
+	  "description": "transfer a stock from DR (stock / lister_shop) to external shop or marketplace",
 	  "type": "webhook",
-	  "title": "Fetch deleted objects (getDeletedObjects - Webhook)",
-	  "description": "Get SugarCRM objects which have recently been deleted",
-	  "fields" : {
-		"module" : {
-		  "label": "SugarCRM module to fetch",
-		  "required": true,
-		  "viewClass": "SelectView",
-		  "model": "modules",
-		  "prompt": "Select a SugarCRM module"
-		}
-	  },
+	  "main": "./lib/triggers/sendProduct.js",
 	  "metadata": {
-		"out": {
-		  "type": "object",
-		  "property": {
-			"id" : {
-			  "type": "string",
-			  "required": true,
-			  "title": "ID of deleted item"
-			}
-		  }
-		}
+		"out": "./lib/schemas/sendProduct.out.js"
 	  }
 	}
   },
   "actions": {
-	"lookupObject" : {
-	  "title": "Lookup Object",
-	  "main": "./lib/actions/lookupObject.js",
-	  "description": "Given an id, fetches the corresponding object.",
-	  "fields" : {
-		"module" : {
-		  "label": "SugarCRM module to lookup",
-		  "required": true,
-		  "viewClass": "SelectView",
-		  "model": "modules",
-		  "prompt": "Select a SugarCRM module"
-		}
-	  },
+	"createOrder" : {
+	  "title": "Create Order",
+	  "main": "./lib/actions/CreateOrder.js",
+	  "description": "Creates the given Order.",
 	  "metadata": {
 		"in": {
 		  "type": "object",
 		  "properties": {
 			"id": {
-			  "title": "id",
-			  "type": "string",
+			  "title": "order",
+			  "type": "object",
 			  "required": true
 			}
 		  }
-		}
-	  }
-	},
-	"deleteObject" : {
-	  "title": "Delete Object",
-	  "main": "./lib/actions/deleteObject.js",
-	  "description": "Given an id, deletes the corresponding object.",
-	  "fields" : {
-		"module" : {
-		  "label": "SugarCRM module to delete",
-		  "required": true,
-		  "viewClass": "SelectView",
-		  "model": "modules",
-		  "prompt": "Select a SugarCRM module"
-		}
-	  },
-	  "metadata": {
-		"in": {
-		  "type": "object",
-		  "properties": {
-			"id": {
-			  "title": "id",
-			  "type": "string",
-			  "required": true
-			}
-		  }
-		}
-	  }
-	},
-	"upsertObject" :{
-	  "main": "./lib/actions/upsertObject.js",
-	  "title": "Upsert Entry",
-	  "description": "Update an existing entry if the id provided.  Otherwise create a new entry.",
-	  "dynamicMetadata": true,
-	  "fields" : {
-		"module" : {
-		  "label": "SugarCRM module to update",
-		  "required": true,
-		  "viewClass": "SelectView",
-		  "model": "modules",
-		  "prompt": "Select a SugarCRM module"
 		}
 	  }
 	}
