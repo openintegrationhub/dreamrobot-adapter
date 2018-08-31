@@ -16,8 +16,8 @@ module.exports = verify;
  */
 function verify(credentials) {
 	try {
-		console.log(credentials);
-		console.log(process.version);
+		// console.log(credentials);
+		// console.log(process.version);
 		const dr = new DreamRobot(credentials, this);
 		// console.dir(credentials);
 
@@ -25,12 +25,13 @@ function verify(credentials) {
 		//     throw new Error('API key is missing');
 		// }
 
+		console.log("Trying to retrieve some API Data (verify credentials)");
 		let promise = dr.makeRequest('system/scope', 'GET');
 
-		promise.catch((e) => {
+		promise./*catch((e) => {
 			console.log("Catch-Error: " + JSON.stringify(e, Object.getOwnPropertyNames(e)));
 			return TRUE;//Fehler
-		}).then((e) => {
+		}).*/then((e) => {
 			console.log("Then-Msg: " + JSON.stringify(e, Object.getOwnPropertyNames(e)));
 			return TRUE;//Fehler
 		})
