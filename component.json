@@ -26,52 +26,24 @@
 	}
   },
   "triggers": {
-	"sendParcelSentState": {
-	  "title": "Transfer 'parcel sent' state",
-	  "description": "tell your shop or marketplace, the order has been shipped",
+	"getNewCustomer": {
+	  "title": "Export new Customer",
+	  "description": "Checks in intervals if new customer have been created",
 	  "type": "webhook",
-	  "main": "./lib/triggers/sendParcelSentState.js",
+	  "main": "./lib/triggers/getNewCustomer.js",
+	  "fields" : {
+//		"customer_id": {
+//		  "label": "Customer ID",
+//		  "required": true,
+//		  "viewClass": "TextFieldView",
+//		  "note": "exports only customer higher(newer) than the one with the numeric id specified.",
+//		  "placeholder": "0"
+//		}
+	  },
 	  "metadata": {
-		"out": "./lib/schemas/sendParcelSentState.out.json"
-	  }
-	},
-	"sendCrossplatformInventoryAdjustments": {
-	  "title": "Update external stock quantities (PüMa/cia)",
-	  "description": "When PüMa/cia(Cross-platform-Inventory-Adjustments) is triggered, send new stocklevel. You have to activate this webhook for each individual stock in the CIA Section in your DR stock settings.",
-	  "type": "webhook",
-	  "main": "./lib/triggers/sendCrossplatformInventoryAdjustments.js",
-	  "metadata": {
-		"out": "./lib/schemas/sendCrossplatformInventoryAdjustments.out.json"
-	  }
-	},
-	"sendProduct": {
-	  "title": "Create or Update a Product (external)",
-	  "description": "transfer a stock from DR (stock / lister_shop) to external shop or marketplace",
-	  "type": "webhook",
-	  "main": "./lib/triggers/sendProduct.js",
-	  "metadata": {
-		"out": "./lib/schemas/sendProduct.out.js"
+		"out": {}
 	  }
 	}
   },
-  "actions": {
-	"createOrder" : {
-	  "title": "Create Order",
-	  "main": "./lib/actions/CreateOrder.js",
-	  "description": "Creates the given Order.",
-	  "metadata": {
-		"in": {
-		  "type": "object",
-		  "properties": {
-			"id": {
-			  "title": "order",
-			  "type": "object",
-			  "required": true
-			}
-		  }
-		},
-		"out":{}
-	  }
-	}
-  }
+  "actions": {}
 }
