@@ -41,9 +41,17 @@
 //		}
 	  },
 	  "metadata": {
-		"out": {}
+		"out": {
+		  "test":{}
+		}
 	  }
 	}
-  },
-  "actions": {}
+  }
+//  "actions": {
+//	"logTest": {
+//	  "title": "just for testwise - logging/exporting Data.",
+//	  "description": "Only some testing logs.",
+//	  "type"
+//	}
+//  }
 }
