@@ -32,7 +32,7 @@
 	  "type": "webhook",
 	  "main": "./lib/triggers/getNewCustomer.js",
 	  "metadata": {
-		"in": "./lib/schemas/getNewCustomer.in.json",
+//		"in": "./lib/schemas/getNewCustomer.in.json",
 		"out": "./lib/schemas/getNewCustomer.out.json"
 	  }
 	}
