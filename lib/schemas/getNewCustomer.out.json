@@ -1,19 +1,29 @@
 {
   "type": "object",
   "properties": {
-	"stock_id": {
-	  "title": "stock_id",
-	  "type": "integer",
+	"customer": {
+	  "type": "object",
 	  "required": true,
-	  "note": "The stock_id is also known as 'Lagernummer'",
-	  "placeholder": 1234
-	},
-	"lister_id": {
-	  "title": "lister_id",
-	  "type": "integer",
-	  "required": true,
-	  "note": "specifies the lister connected with the provided stock.",
-	  "placeholder": 1234
+	  "title": "Kunde",
+	  "properties": {
+		"internal_id": {
+		  "type": "numeric",
+		  "required": true,
+		  "title": "Category ID"
+		},
+		"address": {
+		  "type": "object",
+		  "required": true,
+		  "title": "Adresse",
+		  "properties": {
+			"name": {
+			  "type": "string",
+			  "required": true,
+			  "title": "Name"
+			}
+		  }
+		}
+	  }
 	}
   }
 }

@@ -31,19 +31,19 @@
 	  "description": "Checks in intervals if new customer have been created",
 	  "type": "webhook",
 	  "main": "./lib/triggers/getNewCustomer.js",
-	  "fields" : {
-//		"customer_id": {
-//		  "label": "Customer ID",
-//		  "required": true,
-//		  "viewClass": "TextFieldView",
-//		  "note": "exports only customer higher(newer) than the one with the numeric id specified.",
-//		  "placeholder": "0"
-//		}
-	  },
 	  "metadata": {
-		"out": {
-		  "test":{}
-		}
+		"in": "./lib/schemas/getNewCustomer.in.json",
+		"out": "./lib/schemas/getNewCustomer.out.json"
+	  }
+	}
+  },
+  "actions": {
+	"createPetWithPromise": {
+	  "main": "./lib/actions/createPetWithPromise.js",
+	  "title": "Create a Pet With Promise",
+	  "metadata": {
+		"in": "./lib/schemas/createPet.in.json",
+		"out": "./lib/schemas/createPet.out.json"
 	  }
 	}
   }
