@@ -36,17 +36,17 @@
 		"out": "./lib/schemas/getNewCustomer.out.json"
 	  }
 	}
-  },
-  "actions": {
-	"createPetWithPromise": {
-	  "main": "./lib/actions/createPetWithPromise.js",
-	  "title": "Create a Pet With Promise",
-	  "metadata": {
-		"in": "./lib/schemas/createPet.in.json",
-		"out": "./lib/schemas/createPet.out.json"
-	  }
-	}
   }
+//  "actions": {
+//	"createPetWithPromise": {
+//	  "main": "./lib/actions/createPetWithPromise.js",
+//	  "title": "Create a Pet With Promise",
+//	  "metadata": {
+//		"in": "./lib/schemas/createPet.in.json",
+//		"out": "./lib/schemas/createPet.out.json"
+//	  }
+//	}
+//  }
 //  "actions": {
 //	"logTest": {
 //	  "title": "just for testwise - logging/exporting Data.",
