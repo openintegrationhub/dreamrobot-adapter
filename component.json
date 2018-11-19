@@ -32,7 +32,6 @@
 	  "description": "Checks by webhook if new customer have been created",
 	  "type": "webhook",
 	  "metadata": {
-//		"in": "./lib/schemas/getNewCustomer.in.json",
 		"out": "./lib/schemas/getNewCustomer.out.json"
 	  }
 	}
