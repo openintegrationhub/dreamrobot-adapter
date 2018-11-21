@@ -5,6 +5,6 @@
       "type": "string",
       "required": true,
       "title": "customer_id"
-    },
+    }
   }
 }
