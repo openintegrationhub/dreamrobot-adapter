@@ -1,17 +1,12 @@
-# petstore-component-nodejs
-> Petstore Node.js component template for the [elastic.io platform](http://www.elastic.io "elastic.io platform")
+# DreamRobot Adapter Description
+> DreamRobot Node.js Adapter component for the [elastic.io platform](http://www.elastic.io "elastic.io platform")
 
-This is a component template which we commonly refer as **the first step of the development** for creating a component to deploy into our platform. This component comes with a basic architecture which can be used on our platform. You can clone it and use it. However, **if you plan to deploy it into [elastic.io platform](https://www.elastic.io "elastic.io platform") you must follow sets of instructions to succeed**.
+This is the DreamRobot Adapter Component to connect your DreamRobot Account with any other Open Integration Hub component.
+The Adapter currently supports DR customer exports.
 
 ## Before you Begin
 
-Before you can deploy any code into our system **you must be a registered elastic.io platform user**. Please see our home page at [https://www.elastic.io](https://www.elastic.io) to learn how.
-
-> Any attempt to deploy a code into our platform without a registration would be rejected.
-
-After the registration and opening of the account you must **[upload your SSH Key](http://go2.elastic.io/manage-ssh-keys)** into our platform.
-
-> If you fail to upload you SSH Key you will get **permission denied** error during the deployment.
+To use the Adapter you have to use the DR REST API with user-credentials. In the first step, be sure you have those credentials or ask for them at support@dreamrobot.de.
 
 ## Getting Started
 
