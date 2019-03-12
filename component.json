@@ -41,7 +41,7 @@
 	  "description": "Checks by webhook if new orders have been created",
 	  "type": "webhook",
 	  "metadata": {
-		"out": "./lib/schemas/getNewOrder.out.json"
+		"out": {}
 	  }
 	}
   },
