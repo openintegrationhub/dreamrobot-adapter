@@ -55,8 +55,8 @@
 		"out": {}
 	  }
 	},
-	"createOrder": {
-	  "main": "./lib/actions/createOrder.js",
+	"sendOrder": {
+	  "main": "./lib/actions/sendOrder.js",
 	  "title": "create an DR Order",
 	  "description": "",
 	  "metadata": {
