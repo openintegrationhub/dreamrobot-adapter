@@ -57,8 +57,8 @@
 	},
 	"sendOrder": {
 	  "main": "./lib/actions/sendOrder.js",
-	  "title": "create an DR Order",
-	  "description": "",
+	  "title": "send an DR Order",
+	  "description": "creates or updates an order",
 	  "metadata": {
 		"in": {},
 		"out": {}
